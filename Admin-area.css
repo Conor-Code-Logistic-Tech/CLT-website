@@ -1,0 +1,520 @@
+/* =========
+   Navbar skin (as shown)
+   ========= */
+:root{
+  --nl-bg-start:#2ea881;    /* light green */
+  --nl-bg-end:#0d3933;      /* dark green */
+  --nl-text:#ffffff;
+  --nl-text-dim:rgba(255,255,255,.8);
+  --nl-outline:rgba(255,255,255,.9);
+  --nl-radius:24px;
+}
+
+.navbar.navbar-dark{
+  background: linear-gradient(90deg,var(--nl-bg-start),var(--nl-bg-end)) !important;
+  color: var(--nl-text);
+  border-radius: 0 0 var(--nl-radius) var(--nl-radius);
+  padding: 14px 22px;
+}
+
+/* keep navbar full-width but with soft corners if container wraps it */
+.navbar.navbar-dark .navbar-brand,
+.navbar.navbar-dark .navbar-nav .nav-link{ color: var(--nl-text-dim) }
+.navbar.navbar-dark .navbar-nav .nav-link:hover,
+.navbar.navbar-dark .navbar-nav .nav-link:focus{ color: var(--nl-text) }
+
+/* Brand: logo + name */
+.navbar-brand__logo{
+  height: 38px;
+  width: auto;
+  object-fit: contain;
+}
+.navbar-brand__name{
+  color: var(--nl-text);
+  font-weight: 800;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  font-size: 28px;
+  line-height: 1;
+  margin-left: .6rem;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+/* Center nav links with clean spacing */
+.navbar-nav{
+  gap: 42px;                 /* modern browsers */
+}
+.navbar-nav .nav-link{
+  font-weight: 500;
+  font-size: 16px;
+  padding: .25rem 0 !important;
+}
+
+/* “Sign In” as pill ghost button */
+.navbar .header-user{
+  border: 2px solid var(--nl-outline);
+  color: var(--nl-text);
+  border-radius: 999px;
+  padding: .35rem .9rem !important;
+  line-height: 1.1;
+  display: inline-flex;
+  align-items: center;
+  transition: background .2s ease, color .2s ease, border-color .2s ease;
+}
+.navbar .header-user .shopping-basket-icon{      /* icon wrapper in that link */
+  display: inline-flex;
+}
+.navbar .header-user svg{
+  height: 18px; width: 18px;
+  color: var(--nl-text);
+}
+.navbar .header-user:hover{
+  background: var(--nl-text);
+  color: var(--nl-bg-end);
+  border-color: var(--nl-text);
+}
+.navbar .header-user:hover svg{
+  color: var(--nl-bg-end);
+}
+
+/* Cart icon as outlined square button */
+#basket-link{
+  border: 2px solid var(--nl-outline);
+  border-radius: 10px;
+  padding: .35rem .5rem !important;
+  margin-left: .6rem;
+  display: inline-flex;
+  align-items: center;
+  color: var(--nl-text);
+  transition: background .2s ease, color .2s ease, border-color .2s ease;
+}
+#basket-link svg{
+  height: 20px; width: 20px;
+  color: var(--nl-text);
+}
+#basket-link:hover{
+  background: var(--nl-text);
+  color: var(--nl-bg-end);
+  border-color: var(--nl-text);
+}
+#basket-link:hover svg{ color: var(--nl-bg-end) }
+
+/* Cart qty badge style */
+.shopping-basket-icon-qty.badge{
+  background: #ffffff !important;
+  color: #111 !important;
+  border-radius: 999px;
+  font-weight: 700;
+  margin-left: .25rem;
+}
+
+/* Basket flyout */
+.shopping-basket{
+  background: #ffffff;
+  color: #111;
+  border: 0;
+  border-radius: 16px;
+  box-shadow: 0 20px 40px rgba(0,0,0,.25);
+  padding: 1rem 1rem .75rem;
+}
+.shopping-basket-header .badge{
+  background:#111 !important;
+  color:#fff !important;
+}
+
+/* Tidy SVG color inheritance */
+.navbar svg{ fill: currentColor }
+
+/* Responsive tweaks */
+@media (max-width: 991.98px){
+  .navbar-brand__name{ font-size: 22px }
+  .navbar-nav{ gap: 22px }
+  .navbar .header-user .d-none.d-md-inline-block{ display: none !important } /* hide "Sign In" text on small */
+}
+
+/* ==== Sidebar skin (collapsible) ==== */
+:root{
+  --sb-bg-start:#2ea881;      /* light green */
+  --sb-bg-end:#0d3933;        /* dark green */
+  --sb-text:#ffffff;
+  --sb-text-dim:rgba(255,255,255,.85);
+  --sb-outline:rgba(255,255,255,.9);
+  --sb-hover:rgba(255,255,255,.12);
+  --sb-active:rgba(255,255,255,.18);
+  --sb-radius:20px;
+}
+
+/* Drawer */
+.sidebar-container{ /* wrapper can be relative; no layout changes here */
+  height:100%;
+}
+.sidebar{
+  background: linear-gradient(180deg,var(--sb-bg-start),var(--sb-bg-end)) !important;
+  color: var(--sb-text);
+  width: 290px;
+  border-radius: 0 var(--sb-radius) var(--sb-radius) 0;
+  padding: 18px 16px 20px;
+  box-shadow: 0 16px 40px rgba(0,0,0,.28);
+}
+.sidebar .components{
+  position: static !important;  /* undo inline absolute for natural flow */
+  margin: 8px 0 0;
+  padding: 0;
+}
+
+/* Toggle button (hamburger) */
+#sidebarCollapse.btn{
+  background: transparent !important;
+  border: 2px solid var(--sb-outline) !important;
+  color: var(--sb-text) !important;
+  border-radius: 999px;
+  padding: .4rem .7rem;
+  display:inline-flex;align-items:center;gap:.5rem;
+  transition: background .2s, color .2s, border-color .2s;
+}
+#sidebarCollapse.btn svg{ width:20px;height:20px;color:currentColor }
+#sidebarCollapse.btn:hover{
+  background: var(--sb-text) !important;
+  color: var(--sb-bg-end) !important;
+  border-color: var(--sb-text) !important;
+}
+
+/* Links: icon + text always inline */
+.sidebar a{
+  color: var(--sb-text-dim);
+  text-decoration: none !important;
+}
+.sidebar .components > li{ list-style:none; margin-bottom:6px }
+.sidebar .components > li > a,
+.sidebar .dropdown-item{
+  display: flex !important;
+  align-items: center !important;
+  gap: 12px;
+  padding: .55rem .75rem !important;
+  border-radius: 12px;
+  font-weight: 500;
+  font-size: 15px;
+  line-height: 1.2;
+  background: transparent;
+  transition: background .2s,color .2s;
+}
+.sidebar .components > li > a:hover,
+.sidebar .dropdown-item:hover{ background: var(--sb-hover); color: var(--sb-text) }
+
+/* Active row */
+.sidebar .components > li.active > a,
+.sidebar .dropdown-item.active{
+  background: var(--sb-active);
+  color: var(--sb-text);
+  font-weight: 700;
+}
+
+/* Icons: normalize size even if inline styles exist */
+.sidebar svg{
+  width: 20px; height: 20px;
+  flex: 0 0 20px;
+  color: currentColor;
+}
+.sidebar .link-container > span[style*="font-size"]{ font-size: inherit !important }
+
+/* Section titles and small text in submenu */
+.sidebar .dropdown-item.small,
+.sidebar .dropdown-item .small{
+  font-size: 14px !important;
+  opacity: .95;
+}
+
+/* Submenus */
+.sidebar .collapse{ margin: 4px 0 6px 34px } /* indent submenu list */
+.sidebar .submenu-group{ padding-left: 0 }
+.sidebar .collapse .dropdown-item{
+  padding: .45rem .6rem !important;
+  border-radius: 10px;
+}
+
+/* Dropdown caret alignment (Bootstrap adds ::after) */
+.sidebar .dropdown-toggle::after{
+  filter: invert(1) opacity(.85);
+  margin-left: auto;
+}
+
+/* Logout button block */
+.sidebar .logout-btn .btn{
+  border: 2px solid var(--sb-outline);
+  color: var(--sb-text);
+  border-radius: 12px;
+  padding: .4rem .55rem;
+  background: transparent;
+  transition: background .2s,color .2s,border-color .2s;
+}
+.sidebar .logout-btn .btn:hover{
+  background: var(--sb-text);
+  color: var(--sb-bg-end);
+  border-color: var(--sb-text);
+}
+.sidebar .logout-btn svg{ width:20px;height:20px }
+
+/* Tooltips in dark theme */
+.tooltip .tooltip-inner{ background:#111;color:#fff }
+.tooltip.bs-tooltip-top .arrow::before{ border-top-color:#111 }
+
+/* Ensure badges inside items look consistent */
+.sidebar .badge{
+  background:#fff !important;
+  color:#111 !important;
+  border-radius:999px;
+  font-weight:700;
+}
+
+/* Scrollbar subtlety for overflow menus */
+.sidebar::-webkit-scrollbar{ width:10px }
+.sidebar::-webkit-scrollbar-thumb{
+  background: rgba(255,255,255,.25);
+  border-radius: 999px;
+}
+
+/* Responsive: shrink width and tighten spacing */
+@media (max-width: 991.98px){
+  .sidebar{ width: 260px; padding: 14px 14px 16px }
+  .sidebar .components > li > a{ gap:10px; padding:.5rem .6rem !important }
+}
+
+.card-header {
+  background: linear-gradient(
+    180deg,
+    rgba(45,166,127,1) 0%,
+    rgba(14,59,52,1) 100%
+  );
+  color: #fff;
+  border-bottom: none;
+  font-weight: 600;
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+}
+
+/* Darker as you scroll */
+.card-header {
+  background-attachment: local;
+  background-size: 100% 200%; /* twice the height so scroll changes it */
+}
+
+.navbar .input-group.input-group-sm {
+  border-radius: 999px;
+  overflow: hidden;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+  background: rgba(255,255,255,0.1);
+  border: 1px solid rgba(255,255,255,0.2);
+}
+
+.navbar .input-group.input-group-sm .form-control {
+  border: none;
+  background: transparent;
+  padding: .6rem 1rem;
+  font-size: 0.95rem;
+  color: #fff;
+}
+.navbar .input-group.input-group-sm .form-control::placeholder {
+  color: rgba(255,255,255,0.7);
+}
+
+.navbar .input-group.input-group-sm .btn {
+  background: transparent;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 .85rem;
+  transition: background 0.2s ease;
+}
+.navbar .input-group.input-group-sm .btn svg {
+  width: 18px;
+  height: 18px;
+  color: #fff;
+  transition: color 0.2s ease;
+}
+
+.navbar .input-group.input-group-sm .btn:hover {
+  background: rgba(255,255,255,0.15);
+}
+.navbar .input-group.input-group-sm .btn:hover svg {
+  color: #2ea881; /* brand accent on hover */
+}
+
+.footer.navbar,
+.vue-footer.navbar,
+.navbar.navbar-dark.navbar-expand-lg {
+  background: linear-gradient(180deg, rgb(45,166,127) 0%, rgb(14,59,52) 100%) !important;
+  color: #fff;
+  border-top-left-radius: 24px;
+  border-top-right-radius: 24px;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+  padding: 1rem;
+  box-shadow: 0 -4px 12px rgba(0,0,0,0.25);
+}
+
+/* Nav links */
+.footer.navbar .nav-link,
+.vue-footer.navbar .nav-link {
+  color: rgba(255,255,255,0.85) !important;
+  transition: color 0.2s ease;
+}
+.footer.navbar .nav-link:hover,
+.vue-footer.navbar .nav-link:hover {
+  color: #fff !important;
+}
+
+/* Footer toggler button */
+.footer.navbar .navbar-toggler svg,
+.vue-footer.navbar .navbar-toggler svg {
+  color: #fff;
+}
+.footer.navbar .navbar-toggler:hover,
+.vue-footer.navbar .navbar-toggler:hover {
+  background: rgba(255,255,255,0.15);
+  border-radius: 8px;
+}
+
+.footer{
+    background-color: #fff
+}
+
+.card {
+  border: 1px solid #ced4da;
+  border-radius: 24px; /* or whatever matches */
+  overflow: hidden;    /* keeps inner elements rounded */
+}
+
+/* Primary button: solid green, white text */
+.btn.btn-primary {
+  background-color: rgb(45,166,127) !important;
+  border: 2px solid rgb(45,166,127) !important;
+  color: #fff !important;
+  font-weight: 600;
+  border-radius: 999px;
+  padding: .5rem 1.2rem;
+  transition: background-color 0.2s, color 0.2s, border-color 0.2s;
+}
+.btn.btn-primary:hover {
+  background-color: rgb(14,59,52) !important;
+  border-color: rgb(14,59,52) !important;
+}
+
+/* Secondary button: white background, green outline */
+.btn.btn-secondary {
+  background-color: #fff !important;
+  border: 2px solid rgb(45,166,127) !important;
+  color: rgb(45,166,127) !important;
+  font-weight: 600;
+  border-radius: 999px;
+  padding: .5rem 1.2rem;
+  transition: background-color 0.2s, color 0.2s;
+}
+.btn.btn-secondary:hover {
+  background-color: rgb(45,166,127) !important;
+  color: #fff !important;
+}
+
+.navbar-brand{
+display: none
+}
+
+/* Floating Contact Card */
+.contact-card {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  background: linear-gradient(180deg, rgb(45,166,127) 0%, rgb(14,59,52) 100%);
+  color: #fff;
+  border-radius: 18px;
+  padding: 16px 20px;
+  width: 280px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.25);
+  z-index: 9999;
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+.contact-card svg {
+  flex-shrink: 0;
+  width: 36px;
+  height: 36px;
+}
+.contact-card h4 {
+  font-size: 1.1rem;
+  margin: 0 0 6px;
+}
+.contact-card p {
+  font-size: 0.9rem;
+  margin: 0 0 10px;
+}
+.contact-card .btn {
+  background: #fff;
+  color: rgb(45,166,127);
+  border-radius: 999px;
+  padding: 4px 14px;
+  font-size: 0.85rem;
+}
+.contact-card .btn:hover {
+  background: rgb(45,166,127);
+  color: #fff;
+}
+
+.navbar.navbar__second .navbar-nav.ml-auto {
+  margin-left: 0 !important;
+}
+
+/* Floating contact card widget */
+.contact-widget {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  background: linear-gradient(180deg, rgb(45,166,127) 0%, rgb(14,59,52) 100%);
+  color: #fff;
+  border-radius: 18px;
+  padding: 18px 20px;
+  width: 300px;
+  box-shadow: 0 6px 24px rgba(0,0,0,0.25);
+  z-index: 9999;
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+  font-family: inherit;
+}
+
+/* Icon styling */
+.contact-widget svg {
+  flex-shrink: 0;
+  width: 42px;
+  height: 42px;
+}
+
+/* Text content */
+.contact-widget h4 {
+  font-size: 1.15rem;
+  margin: 0 0 6px;
+  font-weight: 700;
+}
+.contact-widget p {
+  font-size: 0.9rem;
+  margin: 0 0 10px;
+}
+
+/* Button */
+.contact-widget .btn {
+  background: #fff !important;
+  color: rgb(45,166,127) !important;
+  border-radius: 999px;
+  padding: 4px 16px;
+  font-size: 0.85rem;
+  border: none;
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+.contact-widget .btn:hover {
+  background: rgb(45,166,127) !important;
+  color: #fff !important;
+}
+
+
