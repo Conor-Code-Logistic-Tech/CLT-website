@@ -517,4 +517,285 @@ display: none
   color: #fff !important;
 }
 
+/* Sleek single-field search bar */
+.input-group.input-group-lg {
+  background: #fff;
+  border-radius: 50px;
+  border: 2px solid #2da67f;
+  overflow: hidden;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+  transition: all 0.3s ease;
+}
 
+.input-group.input-group-lg:focus-within {
+  box-shadow: 0 0 10px rgba(45,166,127,0.4);
+}
+
+.input-group-prepend .input-group-text {
+  background: transparent;
+  border: none;
+  font-weight: bold;
+  color: #2da67f;
+  padding-left: 1rem;
+}
+
+#domain-search-input {
+  border: none;
+  padding: 0.75rem 1rem;
+  font-size: 1.1rem;
+  outline: none;
+  box-shadow: none;
+  flex: 1;
+}
+
+.input-group-append button {
+  background: transparent;
+  border: none;
+  padding: 0 1rem;
+  color: #2da67f;
+  transition: color 0.3s ease, transform 0.2s ease;
+}
+
+.input-group-append button:hover {
+  color: #0e3b34;
+  transform: scale(1.1);
+}
+
+/* Search bar button only */
+.input-group.input-group-lg .input-group-append .btn {
+  background: #fff !important;
+  border: none !important;  /* remove border */
+  padding: 0 1rem !important;
+  color: #2da67f !important; /* green text/icon */
+  border-radius: 0 8px 8px 0 !important;
+  box-shadow: none !important;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+.input-group.input-group-lg .input-group-append .btn:hover {
+  background: #2da67f !important;
+  color: #fff !important;
+}
+
+/* ===== Filter sidebar (right column) ===== */
+:root{
+  --brand: 45,166,127;          /* #2DA67F */
+  --brand-dark: 14,59,52;       /* #0E3B34 */
+  --mint: #F3FBF8;
+}
+
+/* Card shell */
+.col-xl-4 .card{
+  border: 1px solid #e7efe9;
+  border-radius: 16px;
+  overflow: hidden;
+  background: #fff;
+  box-shadow: 0 8px 24px rgba(0,0,0,.06);
+}
+.col-xl-4 .card-header{
+  background: linear-gradient(180deg, rgb(var(--brand)) 0%, rgb(var(--brand-dark)) 100%) !important;
+  color:#fff !important;
+  font-weight: 700;
+  padding: .9rem 1rem;
+  border:0;
+}
+.col-xl-4 .card-body{ padding: 1rem 1rem 1.1rem; background: var(--mint); }
+
+/* Section titles */
+.col-xl-4 .card-body h4{ color: rgb(var(--brand-dark)); font-size:1rem; margin:.25rem 0 .5rem; }
+
+/* Pills (Sort by / Availability / Taken etc.) */
+.col-xl-4 .btn.btn-sm{
+  border-radius:999px !important;
+  padding:.35rem .75rem;
+  font-weight:600;
+}
+.col-xl-4 .btn-outline-secondary{
+  border:2px solid rgb(var(--brand)) !important;
+  color: rgb(var(--brand)) !important;
+  background:#fff !important;
+}
+.col-xl-4 .btn-outline-secondary:hover,
+.col-xl-4 .btn-outline-secondary.active{
+  background: rgb(var(--brand)) !important;
+  color:#fff !important;
+  border-color: rgb(var(--brand)) !important;
+}
+
+/* Max Price input */
+.col-xl-4 .input-group{
+  border:2px solid rgb(var(--brand));
+  border-radius:12px;
+  overflow:hidden;
+  background:#fff;
+}
+.col-xl-4 .input-group-text{
+  background:#fff;
+  border:0;
+  color: rgb(var(--brand-dark));
+  font-weight:700;
+}
+.col-xl-4 #maxPrice{
+  border:0 !important;
+  box-shadow:none !important;
+}
+.col-xl-4 #maxPrice:focus{ outline:0; box-shadow:0 0 0 3px rgba(45,166,127,.25) inset; }
+
+/* Category radios */
+.col-xl-4 .custom-control-label::before{
+  border:2px solid rgb(var(--brand)) !important;
+  background:#fff !important;
+}
+.col-xl-4 .custom-control-input:checked~.custom-control-label::before{
+  background: rgb(var(--brand)) !important;
+  border-color: rgb(var(--brand)) !important;
+}
+.col-xl-4 .custom-control-input:checked~.custom-control-label::after{
+  background-image:none;
+  box-shadow: inset 0 0 0 4px #fff;
+  border-radius:50%;
+  content:"";
+}
+
+/* Select2 (if present in this card) */
+.col-xl-4 .select2-container--bootstrap4 .select2-selection{
+  border:2px solid rgb(var(--brand)) !important;
+  border-radius:12px !important;
+  background:#fff !important;
+}
+.col-xl-4 .select2-container--bootstrap4 .select2-selection__rendered{
+  color:#333;
+}
+.col-xl-4 .select2-container--bootstrap4 .select2-results__option--highlighted{
+  background: rgb(var(--brand)) !important;
+  color:#fff !important;
+}
+
+/* Small tweaks */
+.col-xl-4 .mb-2{ margin-bottom:.4rem !important; }
+.col-xl-4 hr{ border-top:1px solid #e0eee7; margin:.9rem 0; }
+
+
+/* ===== Domain results table (left column) ===== */
+:root{
+  --brand: 45,166,127;          /* #2DA67F */
+  --brand-dark: 14,59,52;       /* #0E3B34 */
+  --mint: #F3FBF8;
+  --mint-strong:#E8F6F1;
+}
+
+/* container + table sizing */
+#domain-search-container .card .table-responsive{ width:100%; }
+#domain-search-container .card .table{
+  width:100% !important;
+  table-layout:auto !important;           /* stop crushing first col */
+  border-collapse:separate;
+  border-spacing:0 12px;                   /* row gaps */
+  margin:0;
+}
+#domain-search-container .card thead th{
+  border:0;
+  font-weight:600;
+  color:rgb(var(--brand-dark));
+  background:transparent;
+}
+
+/* row block look */
+#domain-search-container .card tbody tr{
+  background: var(--mint);
+  box-shadow: 0 4px 14px rgba(0,0,0,.06);
+}
+#domain-search-container .card tbody tr:hover{
+  background: var(--mint-strong);
+}
+#domain-search-container .card tbody td{
+  border:0 !important;
+  vertical-align: middle;
+  padding: 14px 16px !important;
+}
+#domain-search-container .card tbody td:first-child{
+  border-radius:12px 0 0 12px;
+  width:48%;
+}
+#domain-search-container .card tbody td:nth-child(2){ width:22%; }
+#domain-search-container .card tbody td:nth-child(3){ width:18%; }
+#domain-search-container .card tbody td:last-child{
+  border-radius:0 12px 12px 0;
+  width:12%;
+}
+
+/* domain text + status icons */
+#domain-search-container .td-text svg{ height:18px; width:18px; }
+#domain-search-container .td-text b.text-success{ color: rgb(var(--brand)) !important; }
+#domain-search-container .td-text b.text-danger{ color:#d9534f !important; }
+#domain-search-container .domain-price{ font-weight:700; color:#222; }
+#domain-search-container .domain-price .text-muted{ color:#6b8b81 !important; }
+
+/* checkbox + custom controls inside first cell */
+#domain-search-container .custom-control-label::before{
+  border:2px solid rgb(var(--brand)) !important;
+  background:#fff !important;
+}
+#domain-search-container .custom-control-input:checked~.custom-control-label::before{
+  background: rgb(var(--brand)) !important;
+  border-color: rgb(var(--brand)) !important;
+}
+#domain-search-container .custom-control-input:checked~.custom-control-label::after{
+  background-image:none;
+  box-shadow: inset 0 0 0 4px #fff;
+  border-radius:50%;
+  content:"";
+}
+
+/* years select (native or select2) */
+#domain-search-container select{
+  border:2px solid rgb(var(--brand));
+  border-radius:10px;
+  padding:.35rem .5rem;
+  background:#fff;
+}
+#domain-search-container .select2-container--bootstrap4 .select2-selection{
+  border:2px solid rgb(var(--brand)) !important;
+  border-radius:10px !important;
+  background:#fff !important;
+}
+#domain-search-container .select2-container--bootstrap4 .select2-results__option--highlighted{
+  background: rgb(var(--brand)) !important;
+  color:#fff !important;
+}
+
+/* action buttons */
+#domain-search-container .btn-primary{
+  background: rgb(var(--brand)) !important;
+  border-color: rgb(var(--brand)) !important;
+  color:#fff !important;
+  border-radius:10px;
+  font-weight:700;
+  padding:.45rem .8rem;
+}
+#domain-search-container .btn-primary:hover{
+  filter: brightness(.92);
+}
+#domain-search-container .btn-outline-danger{
+  border-width:2px;
+  border-radius:10px;
+}
+
+/* compact header action */
+#domain-search-container .card thead .btn.btn-outline-secondary{
+  border:2px solid rgb(var(--brand));
+  color: rgb(var(--brand));
+  background:#fff;
+  border-radius:999px;
+}
+#domain-search-container .card thead .btn.btn-outline-secondary:disabled{
+  opacity:.5;
+}
+
+/* mobile tweaks */
+@media (max-width: 991.98px){
+  #domain-search-container .card tbody td:first-child{ width:100%; display:block; }
+  #domain-search-container .card tbody td{ display:block; width:100%; }
+  #domain-search-container .card tbody tr{ border-radius:12px; }
+  #domain-search-container .card tbody td:last-child{ text-align:left; }
+}
