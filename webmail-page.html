@@ -1,0 +1,254 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Welcome to Webmail</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no, maximum-scale=1.0" />
+  <!-- Keep Bootstrap and RC assets so the app works after login -->
+  <link rel="stylesheet" href="skins/elastic/deps/bootstrap.min.css">
+  <link rel="stylesheet" href="skins/elastic/styles/styles.min.css">
+  <link rel="stylesheet" href="plugins/jqueryui/themes/elastic/jquery-ui.min.css">
+  <script>
+    try {
+      if (document.cookie.indexOf('colorMode=dark') > -1
+        || (document.cookie.indexOf('colorMode=light') === -1 && window.matchMedia('(prefers-color-scheme: dark)').matches)
+      ) document.documentElement.classList.add('dark-mode');
+    } catch(e){}
+  </script>
+</head>
+
+<body class="task-login action-none">
+  <div id="layout">
+    <main id="layout-content" class="selected no-navbar" role="main">
+      <div class="wm-wrap">
+        <div class="wm-card">
+          <div class="wm-brand">
+            <h1 class="wm-title">Webmail</h1>
+            <p class="wm-sub">Sign in to manage your email</p>
+          </div>
+
+          <!-- Roundcube login form (IDs and names must remain) -->
+          <form id="login-form" name="login-form" method="post" action="/?_task=login" novalidate>
+            <input type="hidden" name="_token" value="" />
+            <input type="hidden" name="_task" value="login" />
+            <input type="hidden" name="_action" value="login" />
+            <input type="hidden" name="_timezone" id="rcmlogintz" value="Europe/London" />
+            <input type="hidden" name="_url" id="rcmloginurl" value="" />
+
+            <label class="wm-field">
+              <span class="wm-icon">@</span>
+              <input name="_user" id="rcmloginuser" required autocapitalize="none" autocomplete="username"
+                     type="text" placeholder="Email address">
+            </label>
+
+            <label class="wm-field">
+              <span class="wm-icon">••</span>
+              <input name="_pass" id="rcmloginpwd" required autocapitalize="none" autocomplete="current-password"
+                     type="password" placeholder="Password">
+            </label>
+
+            <button type="submit" id="rcmloginsubmit" class="btn btn-primary btn-lg btn-block wm-btn">Login</button>
+          </form>
+
+          <footer id="login-footer" class="wm-footer" role="contentinfo">
+            <small>Secure webmail • Code Logistic Tech</small>
+          </footer>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <div id="messagestack"></div>
+
+  <!-- JS keeps RC happy post-login -->
+  <script src="program/js/jquery.min.js"></script>
+  <script src="program/js/common.min.js"></script>
+  <script src="program/js/app.min.js"></script>
+  <script src="plugins/jqueryui/js/jquery-ui.min.js"></script>
+  <script>
+    // Minimal RC boot so tokens/timezone get injected if needed
+    try {
+      var rcmail = new rcube_webmail();
+      rcmail.set_env({"task":"login","skin":"elastic","cookie_secure":true});
+      rcmail.add_label({"loading":"Loading..."});
+      $(function(){ rcmail.init(); });
+    } catch(e) {}
+  </script>
+
+  <!-- CUSTOM STYLES -->
+<style>
+  :root{
+    --brand-50:  #EDF7F4;
+    --brand-100: #D7EFE7;
+    --brand-200: #B8E3D3;
+    --brand-300: #91D3BB;
+    --brand-400: #6AC4A4;
+    --brand-500: #2FA47F; /* primary */
+    --brand-600: #238765;
+    --ink-900:   #0F172A;
+    --ink-700:   #334155;
+    --ink-500:   #64748B;
+    --card-bg:   #ffffff;
+    --page-grad-top:    rgba(45,166,127,0.10);
+    --page-grad-bottom: rgba(14,59,52,0.35);
+    --ring: rgba(47,164,127,0.35);
+    --shadow: 0 10px 30px rgba(14,59,52,0.18);
+    --radius-xl: 18px;
+    --radius-lg: 14px;
+    --radius-sm: 10px;
+  }
+  html,body{height:100%;}
+  body{
+    background:
+      radial-gradient(1200px 600px at 50% -10%, var(--page-grad-top), transparent 70%),
+      linear-gradient(180deg, #F8FAFC 0%, var(--page-grad-bottom) 120%);
+    color: var(--ink-900);
+  }
+
+  .wm-wrap{
+    min-height:100vh;
+    display:grid;
+    place-items:center;
+    padding: 24px;
+  }
+
+  .wm-card{
+    width: 100%;
+    max-width: 440px;
+    background: var(--card-bg);
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow);
+    border: 1px solid rgba(14,59,52,0.08);
+    overflow: hidden; /* keep content inside card */
+  }
+
+  .wm-brand{
+    padding: 28px 28px 16px;
+    background: linear-gradient(0deg, rgba(14,59,52,0.08) 0%, rgba(45,166,127,0.18) 100%);
+    border-bottom: 1px solid rgba(14,59,52,0.10);
+    text-align:center;
+    border-top-left-radius: inherit;
+    border-top-right-radius: inherit;
+    margin: 0;
+  }
+  .wm-logo{
+    height: 42px;
+    width:auto;
+    margin-bottom: 8px;
+    display:inline-block;
+  }
+  .wm-title{
+    font-size: 22px;
+    margin: 4px 0 2px;
+    font-weight: 700;
+    color: var(--ink-900);
+  }
+  .wm-sub{
+    margin: 0;
+    color: var(--ink-500);
+    font-size: 14px;
+  }
+
+  #login-form{
+    padding: 22px 22px 8px;
+    margin: 0;
+  }
+
+  .wm-field{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    background:#fff;
+    border:1px solid rgba(14,59,52,0.12);
+    border-radius: var(--radius-lg);
+    padding: 10px 12px;
+    margin-bottom: 14px;
+    transition: border-color .2s, box-shadow .2s, background .2s;
+  }
+  .wm-field:focus-within{
+    border-color: var(--brand-400);
+    box-shadow: 0 0 0 4px var(--ring);
+    background: var(--brand-50);
+    position: relative;
+    z-index: 1;
+  }
+  .wm-icon{
+    font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+    font-weight: 700;
+    color: var(--brand-600);
+    width: 22px;
+    text-align:center;
+    user-select:none;
+  }
+  .wm-field input{
+    border:0 !important;
+    outline:0;
+    width:100%;
+    background:transparent;
+    padding: 4px 2px;
+    font-size:16px;
+    color: var(--ink-900);
+  }
+  .wm-field input::placeholder{ color: var(--ink-500); }
+
+  .wm-btn{
+    margin: 6px 0 8px;
+    border-radius: var(--radius-lg) !important;
+    border: 1px solid var(--brand-500) !important;
+    background: var(--brand-500) !important;
+    color: #fff !important;
+    font-weight: 700;
+    letter-spacing: .2px;
+    padding: 12px 16px;
+    transition: transform .06s ease, box-shadow .2s ease, background .2s;
+    box-shadow: 0 6px 16px rgba(47,164,127,0.35);
+  }
+  .wm-btn:hover{
+    background: var(--brand-600) !important;
+    border-color: var(--brand-600) !important;
+    transform: translateY(-1px);
+    box-shadow: 0 10px 22px rgba(14,59,52,0.28);
+  }
+  .wm-btn:active{
+    transform: translateY(0);
+    box-shadow: 0 4px 10px rgba(14,59,52,0.20);
+  }
+
+  .wm-footer{
+    padding: 12px 18px 18px;
+    text-align:center;
+    color: var(--ink-500);
+    font-size: 12px;
+  }
+
+  table, .propform table { display:block; width:100%; border:0 !important; }
+  .propform .form-group, .propform .input-group, .propform .input { all: unset; }
+  .propform .input-group-prepend, .propform .input-group-text, .input-group-append { display:none !important; }
+
+  .dark-mode body{ background:#0b1210; }
+  .dark-mode .wm-card{ background:#0e1614; border-color: rgba(255,255,255,0.06); }
+  .dark-mode .wm-brand{
+    background: linear-gradient(0deg, rgba(255,255,255,0.03) 0%, rgba(45,166,127,0.12) 100%);
+    border-bottom-color: rgba(255,255,255,0.06);
+  }
+  .dark-mode .wm-title{ color:#e6f6f1; }
+  .dark-mode .wm-sub{ color:#96a7a0; }
+  .dark-mode .wm-field{
+    background:#0b1210;
+    border-color: rgba(255,255,255,0.10);
+  }
+  .dark-mode .wm-field input{ color:#e6f6f1; }
+  .dark-mode .wm-field input::placeholder{ color:#8aa49b; }
+  .dark-mode .wm-btn{ box-shadow: 0 6px 16px rgba(47,164,127,0.45); }
+  .dark-mode .wm-footer{ color:#8aa49b; }
+
+  @media (max-width: 380px){
+    .wm-card{ border-radius: 14px; }
+    .wm-brand{ padding:22px 18px 12px; }
+    #login-form{ padding:18px 16px 6px; }
+  }
+</style>
+
+
+</body>
+</html>
